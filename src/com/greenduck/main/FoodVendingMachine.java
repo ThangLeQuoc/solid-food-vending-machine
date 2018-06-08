@@ -50,6 +50,7 @@ public abstract class FoodVendingMachine {
     public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
+    
 
     /* Playground */
     public abstract void addBalance(Banknote note);

@@ -1,5 +1,6 @@
 package com.greenduck.vendingmachine.foods;
 
+//TODO: Add javadoc, make it like a pro
 public abstract class Food {
     
     private String name;
