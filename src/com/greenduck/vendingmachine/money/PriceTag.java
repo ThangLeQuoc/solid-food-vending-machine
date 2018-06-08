@@ -1,6 +1,4 @@
-package com.greenduck.vendingmachine.foods;
-
-import com.greenduck.vendingmachine.money.Currency;
+package com.greenduck.vendingmachine.money;
 
 //TODO: add java doc
 public class PriceTag {
