@@ -1,4 +1,4 @@
-package com.greenduck.main;
+package com.greenduck.vendingmachine.machine;
 
 import com.greenduck.vendingmachine.foods.Food;
 import com.greenduck.vendingmachine.money.Banknote;

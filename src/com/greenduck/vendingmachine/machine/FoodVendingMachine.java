@@ -1,4 +1,4 @@
-package com.greenduck.main;
+package com.greenduck.vendingmachine.machine;
 
 import java.util.ArrayList;
 import java.util.List;
