@@ -10,6 +10,7 @@ import com.greenduck.vendingmachine.machine.FoodVendingMachine;
 import com.greenduck.vendingmachine.machine.MonkeyFoodVendingMachine;
 import com.greenduck.vendingmachine.money.Banknote;
 import com.greenduck.vendingmachine.money.Currency;
+import com.greenduck.vendingmachine.money.CurrencyExchangeRateConstants;
 
 public class FoodVendingMachineTest {
 
@@ -58,27 +59,45 @@ public class FoodVendingMachineTest {
 
     @Test
     public void testAddBalance_ShouldAddCHFtoVNDBalanceCorrectly() {
+        //given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote chfNote = new Banknote(Currency.CHF, 20);
+        
+        //when
         foodVendingMachine.addBalance(chfNote);
-        assertEquals(461247.70, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+        
+        //then
+        double expectedBalance = chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_VND;
+        assertEquals(expectedBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
     @Test
     public void testAddBalance_ShouldAddUSDtoVNDBalance() {
+        //given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote usdNote = new Banknote(Currency.USD, 2);
+        
+        //when
         foodVendingMachine.addBalance(usdNote);
-        assertEquals(45411.00, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+        
+        //then
+        double expectedAmount = usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_VND;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
 
     }
 
     @Test
     public void testAddBalance_ShouldAddEURtoVNDBalance() {
+        //given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote eurNote = new Banknote(Currency.EUR, 50);
+        
+        //when
         foodVendingMachine.addBalance(eurNote);
-        assertEquals(1337521.97, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+        
+        //then
+        double expectedAmount = eurNote.getAmount() * CurrencyExchangeRateConstants.EUR_TO_VND;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
     @Test

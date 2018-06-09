@@ -3,6 +3,7 @@ package com.greenduck.vendingmachine.machine;
 import com.greenduck.vendingmachine.foods.Food;
 import com.greenduck.vendingmachine.money.Banknote;
 import com.greenduck.vendingmachine.money.Currency;
+import com.greenduck.vendingmachine.money.CurrencyExchangeRateConstants;
 
 /**
  * We hire a monkey coder to implement a sample vending machine for us. He gave
@@ -20,63 +21,61 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
         /* Our machine currently use VND, so let's check what you put in */
         if (Currency.VND.equals(getCurrency())) {
             if (Currency.VND.equals(note.getCurrency())) {
-                this.balance += note.getAmount();
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.VND_TO_VND;
             }
-            /* Googling CHF to VND give me this */
             if (Currency.CHF.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 23062.39;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.CHF_TO_VND;
             }
             if (Currency.USD.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 22705.50;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.USD_TO_VND;
             }
             if (Currency.EUR.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 26750.44;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.EUR_TO_VND;
             }
         }
 
         if (Currency.USD.equals(getCurrency())) {
             if (Currency.USD.equals(note.getCurrency())) {
-                this.balance += note.getAmount();
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.USD_TO_USD;
             }
-            /* Googling CHF to USD give me this */
             if (Currency.CHF.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 1.02;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.CHF_TO_USD;
             }
             if (Currency.VND.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.000044;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.VND_TO_USD;
             }
             if (Currency.EUR.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.86;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.EUR_TO_USD;
             }
         }
 
         if (Currency.CHF.equals(getCurrency())) {
             if (Currency.CHF.equals(note.getCurrency())) {
-                this.balance += note.getAmount();
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.CHF_TO_CHF;
             }
             if (Currency.VND.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.000043;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.VND_TO_CHF;
             }
             if (Currency.USD.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.98;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.USD_TO_CHF;
             }
             if (Currency.EUR.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 1.16;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.EUR_TO_CHF;
             }
         }
 
         if (Currency.EUR.equals(getCurrency())) {
             if (Currency.EUR.equals(note.getCurrency())) {
-                this.balance += note.getAmount();
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.EUR_TO_EUR;
             }
             if (Currency.CHF.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.86;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.CHF_TO_EUR;
             }
             if (Currency.USD.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.85;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.USD_TO_EUR;
             }
             if (Currency.VND.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 0.000037;
+                this.balance += note.getAmount() * CurrencyExchangeRateConstants.VND_TO_EUR;
             }
         }
     }
@@ -94,61 +93,61 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
 
         if (Currency.VND.equals(getCurrency())) {
             if (Currency.VND.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice();
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.VND_TO_VND;
             }
             if (Currency.CHF.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 23062.39;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.CHF_TO_VND;
             }
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 22705.50;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.USD_TO_VND;
             }
             if (Currency.EUR.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 26750.44;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.EUR_TO_VND;
             }
         }
 
         if (Currency.USD.equals(getCurrency())) {
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice();
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.USD_TO_USD;
             }
             if (Currency.CHF.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 1.02;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.CHF_TO_USD;
             }
             if (Currency.VND.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.000044;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.VND_TO_USD;
             }
             if (Currency.EUR.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.86;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.EUR_TO_USD;
             }
         }
 
         if (Currency.EUR.equals(getCurrency())) {
             if (Currency.EUR.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice();
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.EUR_TO_EUR;
             }
             if (Currency.CHF.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.86;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.CHF_TO_EUR;
             }
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.85;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.USD_TO_EUR;
             }
             if (Currency.VND.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.000037;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.VND_TO_EUR;
             }
         }
 
         if (Currency.CHF.equals(getCurrency())) {
             if (Currency.CHF.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice();
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.CHF_TO_CHF;
             }
             if (Currency.VND.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.000043;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.VND_TO_CHF;
             }
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 0.98;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.USD_TO_CHF;
             }
             if (Currency.EUR.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 1.16;
+                this.balance -= selectedFood.getPriceTag().getPrice() * CurrencyExchangeRateConstants.EUR_TO_CHF;
             }
         }
 
