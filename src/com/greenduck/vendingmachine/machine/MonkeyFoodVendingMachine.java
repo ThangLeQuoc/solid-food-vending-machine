@@ -82,9 +82,7 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
 
     @Override
     public Food getFood(int selectedIndex) {
-        if (selectedIndex >= this.foods.size()) {
-            throw new IllegalArgumentException("Invalid Food Index");
-        }
+        verifyValidFoodSelection(selectedIndex);
 
         double currentBalance = getBalance();
         Food selectedFood = foods.get(selectedIndex);
@@ -155,6 +153,8 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
             System.out.println("In Your Dream");
             this.balance = currentBalance;
             selectedFood = null;
+        } else {
+            this.foods.remove(selectedIndex);
         }
         printBalance();
         return selectedFood;

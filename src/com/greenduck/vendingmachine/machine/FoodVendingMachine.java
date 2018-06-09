@@ -8,6 +8,8 @@ import com.greenduck.vendingmachine.money.Banknote;
 import com.greenduck.vendingmachine.money.Currency;
 
 public abstract class FoodVendingMachine {
+    
+    public static final String ERR_MESSAGE_INVALID_FOOD_SELECTION = "Invalid Food Selection";
 
     protected double balance;
 
@@ -50,6 +52,12 @@ public abstract class FoodVendingMachine {
     public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
+    
+    protected void verifyValidFoodSelection(int selectedIndex) {
+        if (selectedIndex >= this.foods.size()) {
+            throw new IllegalArgumentException(ERR_MESSAGE_INVALID_FOOD_SELECTION);
+        }
+    } 
     
 
     /* Playground */
