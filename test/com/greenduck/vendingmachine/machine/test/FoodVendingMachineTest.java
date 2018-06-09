@@ -59,28 +59,28 @@ public class FoodVendingMachineTest {
 
     @Test
     public void testAddBalance_ShouldAddCHFtoVNDBalanceCorrectly() {
-        //given
+        // given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote chfNote = new Banknote(Currency.CHF, 20);
-        
-        //when
+
+        // when
         foodVendingMachine.addBalance(chfNote);
-        
-        //then
+
+        // then
         double expectedBalance = chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_VND;
         assertEquals(expectedBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
     @Test
     public void testAddBalance_ShouldAddUSDtoVNDBalance() {
-        //given
+        // given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote usdNote = new Banknote(Currency.USD, 2);
-        
-        //when
+
+        // when
         foodVendingMachine.addBalance(usdNote);
-        
-        //then
+
+        // then
         double expectedAmount = usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_VND;
         assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
 
@@ -88,20 +88,195 @@ public class FoodVendingMachineTest {
 
     @Test
     public void testAddBalance_ShouldAddEURtoVNDBalance() {
-        //given
+        // given
         foodVendingMachine.setCurrency(Currency.VND);
         Banknote eurNote = new Banknote(Currency.EUR, 50);
-        
-        //when
+
+        // when
         foodVendingMachine.addBalance(eurNote);
-        
-        //then
+
+        // then
         double expectedAmount = eurNote.getAmount() * CurrencyExchangeRateConstants.EUR_TO_VND;
         assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
     @Test
     public void testAddBalance_ShouldAddVNDtoUSDBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.USD);
+        Banknote vndNote = new Banknote(Currency.VND, 50000);
+
+        // when
+        foodVendingMachine.addBalance(vndNote);
+
+        // then
+        double expectedAmount = vndNote.getAmount() * CurrencyExchangeRateConstants.VND_TO_USD;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddCHFtoUSDBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.USD);
+        Banknote chfNote = new Banknote(Currency.CHF, 20);
+
+        // when
+        foodVendingMachine.addBalance(chfNote);
+
+        // then
+        double expectedAmount = chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_USD;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddEURToUSDBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.USD);
+        Banknote eurNote = new Banknote(Currency.EUR, 100);
+
+        // when
+        foodVendingMachine.addBalance(eurNote);
+
+        // then
+        double expectedAmount = eurNote.getAmount() * CurrencyExchangeRateConstants.EUR_TO_USD;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddUSDtoUSDBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.USD);
+        Banknote usdNote = new Banknote(Currency.USD, 100);
+
+        // when
+        foodVendingMachine.addBalance(usdNote);
+
+        // then
+        double expectedAmount = usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_USD;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddUSDtoEURBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.EUR);
+        Banknote usdNote = new Banknote(Currency.USD, 10);
+
+        // when
+        foodVendingMachine.addBalance(usdNote);
+
+        // then
+        double expectedAmount = usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_EUR;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddVNDtoEURBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.EUR);
+        Banknote vndNote = new Banknote(Currency.VND, 100000);
+
+        // when
+        foodVendingMachine.addBalance(vndNote);
+
+        // then
+        double expectedAmount = vndNote.getAmount() * CurrencyExchangeRateConstants.VND_TO_EUR;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddCHFtoEURBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.EUR);
+        Banknote chfNote = new Banknote(Currency.CHF, 50);
+
+        // when
+        foodVendingMachine.addBalance(chfNote);
+
+        // then
+        double expectedAmount = chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_EUR;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddEURtoEURBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.EUR);
+        Banknote eurNote = new Banknote(Currency.EUR, 50);
+
+        // when
+        foodVendingMachine.addBalance(eurNote);
+
+        // then
+        double expectedAmount = eurNote.getAmount() * CurrencyExchangeRateConstants.EUR_TO_EUR;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddCHFtoCHFBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Banknote chfNote = new Banknote(Currency.CHF, 50);
+
+        // when
+        foodVendingMachine.addBalance(chfNote);
+
+        // then
+        double expectedAmount = chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_CHF;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddUSDtoCHFBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Banknote usdNote = new Banknote(Currency.USD, 20);
+
+        // when
+        foodVendingMachine.addBalance(usdNote);
+
+        // then
+        double expectedAmount = usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_CHF;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddVNDToCHFBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Banknote vndNote = new Banknote(Currency.VND, 200000);
+
+        // when
+        foodVendingMachine.addBalance(vndNote);
+
+        // then
+        double expectedAmount = vndNote.getAmount() * CurrencyExchangeRateConstants.VND_TO_CHF;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddEURToCHFBalance() {
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Banknote eurNote = new Banknote(Currency.EUR, 10);
+
+        // when
+        foodVendingMachine.addBalance(eurNote);
+
+        // then
+        double expectedAmount = eurNote.getAmount() * CurrencyExchangeRateConstants.EUR_TO_CHF;
+        assertEquals(expectedAmount, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAbleToAddDifferentCurrencyTypeToVNDCurrency() {
+        // given
+        foodVendingMachine.setCurrency(Currency.VND);
+
+        Banknote vndNote = new Banknote(Currency.VND, 50000);
+        Banknote usdNote = new Banknote(Currency.USD, 50);
+        Banknote eurNote = new Banknote(Currency.EUR, 100);
+        Banknote chfNote = new Banknote(Currency.CHF, 20);
 
     }
 
