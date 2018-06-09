@@ -27,10 +27,10 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
                 this.balance += note.getAmount() * 23062.39;
             }
             if (Currency.USD.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 22806;
+                this.balance += note.getAmount() * 22705.50;
             }
             if (Currency.EUR.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 26810.73;
+                this.balance += note.getAmount() * 26750.44;
             }
         }
 
@@ -100,10 +100,10 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
                 this.balance -= selectedFood.getPriceTag().getPrice() * 23062.39;
             }
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 22806;
+                this.balance -= selectedFood.getPriceTag().getPrice() * 22705.50;
             }
             if (Currency.EUR.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 26810.73;
+                this.balance -= selectedFood.getPriceTag().getPrice() * 26750.44;
             }
         }
 

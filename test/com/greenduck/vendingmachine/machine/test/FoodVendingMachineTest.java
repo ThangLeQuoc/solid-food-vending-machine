@@ -64,4 +64,26 @@ public class FoodVendingMachineTest {
         assertEquals(461247.70, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
+    @Test
+    public void testAddBalance_ShouldAddUSDtoVNDBalance() {
+        foodVendingMachine.setCurrency(Currency.VND);
+        Banknote usdNote = new Banknote(Currency.USD, 2);
+        foodVendingMachine.addBalance(usdNote);
+        assertEquals(45411.00, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddEURtoVNDBalance() {
+        foodVendingMachine.setCurrency(Currency.VND);
+        Banknote eurNote = new Banknote(Currency.EUR, 50);
+        foodVendingMachine.addBalance(eurNote);
+        assertEquals(1337521.97, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    @Test
+    public void testAddBalance_ShouldAddVNDtoUSDBalance() {
+
+    }
+
 }
