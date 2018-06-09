@@ -24,7 +24,7 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
             }
             /* Googling CHF to VND give me this */
             if (Currency.CHF.equals(note.getCurrency())) {
-                this.balance += note.getAmount() * 23165.19;
+                this.balance += note.getAmount() * 23062.39;
             }
             if (Currency.USD.equals(note.getCurrency())) {
                 this.balance += note.getAmount() * 22806;
@@ -97,7 +97,7 @@ public class MonkeyFoodVendingMachine extends FoodVendingMachine {
                 this.balance -= selectedFood.getPriceTag().getPrice();
             }
             if (Currency.CHF.equals(selectedFood.getPriceTag().getCurrency())) {
-                this.balance -= selectedFood.getPriceTag().getPrice() * 23165.19;
+                this.balance -= selectedFood.getPriceTag().getPrice() * 23062.39;
             }
             if (Currency.USD.equals(selectedFood.getPriceTag().getCurrency())) {
                 this.balance -= selectedFood.getPriceTag().getPrice() * 22806;
