@@ -1,5 +1,8 @@
 package com.greenduck.vendingmachine.foods;
 
+import com.greenduck.vendingmachine.money.PriceTag;
+
+//TODO: Add javadoc, make it like a pro
 public abstract class Food {
     
     private String name;
@@ -13,7 +16,7 @@ public abstract class Food {
         return priceTag;
     }
     
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
     
