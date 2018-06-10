@@ -2,3 +2,4 @@ bin/
 .settings/
 .classpath
 .project
+food-vending-machine\.ldb
