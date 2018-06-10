@@ -227,18 +227,18 @@ public class FoodVendingMachineTest {
             Food expectedChocolateBar = foodVendingMachine.getFood(0);
             assertEquals(chocolateBar, expectedChocolateBar);
 
-            Food expectedEmptyFood = foodVendingMachine.getFood(0);
+            foodVendingMachine.getFood(0);
         } catch (IllegalArgumentException e) {
             assertEquals(FoodVendingMachine.ERR_MESSAGE_INVALID_FOOD_SELECTION, e.getMessage());
             throw e;
         }
-
     }
 
     @Test
     public void testBuyFood_ShouldReturnFoodAndReduceBalance_WithMachineVNDCurrency() {
         // given
         foodVendingMachine.setCurrency(Currency.VND);
+
         Food biscuit = new Biscuit();
         PriceTag biscuitPrice = new PriceTag(Currency.EUR, 1.43);
         biscuit.setPriceTag(biscuitPrice);
@@ -248,14 +248,15 @@ public class FoodVendingMachineTest {
         Banknote vndNote = new Banknote(Currency.VND, 50000);
         foodVendingMachine.addBalance(vndNote);
         double initialBalance = foodVendingMachine.getBalance();
-        Food expectedFood = foodVendingMachine.getFood(0);
+        Food actualFood = foodVendingMachine.getFood(0);
 
         // then
         assertTrue(initialBalance > biscuit.getPriceTag().getPrice() * CurrencyExchangeRateConstants.EUR_TO_VND);
         double expectedRemainingBalance = initialBalance
                 - biscuitPrice.getPrice() * CurrencyExchangeRateConstants.EUR_TO_VND;
         assertEquals(expectedRemainingBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
-        assertEquals(biscuit, expectedFood);
+        assertEquals(biscuit, actualFood);
+
     }
 
     @Test
@@ -267,7 +268,7 @@ public class FoodVendingMachineTest {
         PriceTag sausagePrice = new PriceTag(Currency.VND, 4000);
         sausage.setPriceTag(sausagePrice);
         Food biscuit = new Biscuit();
-        PriceTag biscuitPrice = new PriceTag(Currency.CHF, 100);
+        PriceTag biscuitPrice = new PriceTag(Currency.CHF, 1);
         biscuit.setPriceTag(biscuitPrice);
 
         foodVendingMachine.addFood(sausage);
@@ -278,14 +279,69 @@ public class FoodVendingMachineTest {
         double initialBalance = foodVendingMachine.getBalance();
 
         // when
-        Food actualFood = foodVendingMachine.getFood(0);
+        Food actualFood1 = foodVendingMachine.getFood(0);
 
         // then
-        assertEquals(sausage, actualFood);
+        assertEquals(sausage, actualFood1);
         double expectedRemainingBalance = initialBalance
                 - sausage.getPriceTag().getPrice() * CurrencyExchangeRateConstants.VND_TO_USD;
         assertEquals(expectedRemainingBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
 
+        Food actualFood2 = foodVendingMachine.getFood(0);
+        assertEquals(biscuit, actualFood2);
+        expectedRemainingBalance = expectedRemainingBalance
+                - biscuit.getPriceTag().getPrice() * CurrencyExchangeRateConstants.CHF_TO_USD;
+        assertEquals(expectedRemainingBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+    }
+
+    public void testBuyFood_ShouldBuyCHFTagFood_WithCHFMachineCurrency() {
+
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Food biscuit = new Biscuit();
+        PriceTag biscuitPrice = new PriceTag(Currency.CHF, 10);
+        biscuit.setPriceTag(biscuitPrice);
+        foodVendingMachine.addFood(biscuit);
+
+        // when
+        Banknote chfNote1 = new Banknote(Currency.CHF, 5);
+        foodVendingMachine.addBalance(chfNote1);
+        double initialBalance = foodVendingMachine.getBalance();
+        Food actualFood = foodVendingMachine.getFood(0);
+
+        // then
+        assertNull(actualFood);
+        assertEquals(initialBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+        Banknote chfNote2 = new Banknote(Currency.CHF, 10);
+        foodVendingMachine.addBalance(chfNote2);
+        initialBalance += chfNote2.getAmount();
+        actualFood = foodVendingMachine.getFood(0);
+        assertEquals(biscuit, actualFood);
+        double expectedRemainingBalance = initialBalance - biscuit.getPriceTag().getPrice();
+        assertEquals(expectedRemainingBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
+
+    }
+
+    @Test
+    public void testBuyFood_ShouldBuyUSDTagFood_WithCHFMachineCurrency() {
+        // given
+        foodVendingMachine.setCurrency(Currency.CHF);
+        Food americanSausage = new Sausage();
+        PriceTag americanSausagePrice = new PriceTag(Currency.USD, 12);
+        americanSausage.setPriceTag(americanSausagePrice);
+        foodVendingMachine.addFood(americanSausage);
+
+        Banknote usdNote = new Banknote(Currency.USD, 20);
+        foodVendingMachine.addBalance(usdNote);
+        double initialBalance = foodVendingMachine.getBalance();
+
+        // when
+        Food actualSausage = foodVendingMachine.getFood(0);
+        assertEquals(americanSausage, actualSausage);
+        double expectedRemainingBalanceInCHF = initialBalance
+                - americanSausage.getPriceTag().getPrice() * CurrencyExchangeRateConstants.USD_TO_CHF;
+
+        assertEquals(expectedRemainingBalanceInCHF, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
 }
