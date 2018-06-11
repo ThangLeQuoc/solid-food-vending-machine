@@ -111,5 +111,5 @@ Seeing the horrible over-generous vending machine, Adnovum company design to hir
 - Make sure yours test cases cover all most all the code. Luckily the monkey coder
 already write some test cases, so you can quickly refer and make a good use from them
 
-
+###### From The Green Rubber Ducks :hatching_chick: Team with :heart:
 
