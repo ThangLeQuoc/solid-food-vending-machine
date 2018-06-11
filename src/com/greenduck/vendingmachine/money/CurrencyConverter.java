@@ -1,28 +1,40 @@
 package com.greenduck.vendingmachine.money;
 
 public class CurrencyConverter {
-    
+
     public static double exchangeCurrency(Currency from, Currency to, double amount) {
         if (Currency.USD.equals(to)) {
-            if (Currency.VND.equals(from)) {
-                return amount * CurrencyExchangeRateConstants.VND_TO_USD;
-            }
-            if (Currency.CHF.equals(from)) {
-                return amount * CurrencyExchangeRateConstants.CHF_TO_USD;
-            }
+            return convertToUSDCurrency(from, amount);
         }
-        
         if (Currency.USD.equals(from)) {
-            if (Currency.VND.equals(to)) {
-                return amount * CurrencyExchangeRateConstants.USD_TO_VND;
-            }
-            
-            if (Currency.CHF.equals(to)) {
-                return amount * CurrencyExchangeRateConstants.USD_TO_CHF;
-            }
+            return convertFromUSDCurrency(to, amount);
         }
-        return 0;
-        
+        return exchangeCurrency(Currency.USD, to, exchangeCurrency(from, Currency.USD, amount));
+
     }
-    
+
+    private static double convertToUSDCurrency(Currency currency, double amount) {
+        if (Currency.VND.equals(currency)) {
+            return amount * CurrencyExchangeRateConstants.VND_TO_USD;
+        }
+        if (Currency.EUR.equals(currency)) {
+            return amount * CurrencyExchangeRateConstants.EUR_TO_USD;
+        }
+        if (Currency.CHF.equals(currency)) {
+            return amount * CurrencyExchangeRateConstants.CHF_TO_USD;
+        }
+        return amount;
+    }
+
+    private static double convertFromUSDCurrency(Currency currency, double amount) {
+        if (Currency.VND.equals(currency)) {
+            return amount * CurrencyExchangeRateConstants.USD_TO_VND;
+        }
+        if (Currency.EUR.equals(currency)) {
+            return amount * CurrencyExchangeRateConstants.USD_TO_EUR;
+        } else {
+            return amount * CurrencyExchangeRateConstants.USD_TO_CHF;
+        }
+    }
+
 }

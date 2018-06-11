@@ -47,4 +47,74 @@ public class CurrencyConverterTest {
         double actualAmount = CurrencyConverter.exchangeCurrency(Currency.USD, Currency.CHF, usdAmount);
         assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
     }
+    
+    @Test
+    public void testConvertEURtoUSD() {
+        double eurAmount = 5;
+        
+        double expectedAmount = eurAmount * CurrencyExchangeRateConstants.EUR_TO_USD;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.EUR, Currency.USD, eurAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertUSDtoEUR() {
+        double usdAmount = 15.34;
+        
+        double expectedAmount = usdAmount * CurrencyExchangeRateConstants.USD_TO_EUR;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.USD, Currency.EUR, usdAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertUSDtoUSD() {
+        double usdAmount = 10;
+        
+        double expectedAmount = 10;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.USD, Currency.USD, usdAmount);
+        
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertVNDtoCHF() {
+        double vndAmount = 70000;
+        
+        double expectedAmount = vndAmount * CurrencyExchangeRateConstants.VND_TO_CHF;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.VND, Currency.CHF, vndAmount);
+        
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertVNDtoVND() {
+        double vndAmount = 15000;
+        
+        double expectedAmount = 15000;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.VND, Currency.VND, vndAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertEURtoCHF() {
+        double eurAmount = 160.45;
+        
+        double expectedAmount = eurAmount * CurrencyExchangeRateConstants.EUR_TO_CHF;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.EUR, Currency.CHF, eurAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertCHFtoEUR() {
+        double chfAmount = 65.34;
+        
+        double expectedAmount = chfAmount * CurrencyExchangeRateConstants.CHF_TO_EUR;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.CHF, Currency.EUR, chfAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    
+    
+    
+    
 }
