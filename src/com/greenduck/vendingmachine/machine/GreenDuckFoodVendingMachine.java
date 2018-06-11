@@ -12,7 +12,7 @@ public class GreenDuckFoodVendingMachine extends FoodVendingMachine {
 
     @Override
     public void addBalance(Banknote note) {
-        // TODO Auto-generated method stub
+       
         
     }
 
