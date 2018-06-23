@@ -113,4 +113,30 @@ public class CurrencyConverterTest {
         assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
     }
     
+    @Test
+    public void testConvertCHFtoVND() {
+        double chfAmount = 20;
+        double expectedAmount = chfAmount * CurrencyExchangeRateConstants.CHF_TO_VND;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.CHF, Currency.VND, chfAmount);
+        
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertEURtoVND() {
+        double eurAmount = 100;
+        double expectedAmount = eurAmount * CurrencyExchangeRateConstants.EUR_TO_VND;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.EUR, Currency.VND, eurAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+    
+    @Test
+    public void testConvertVNDtoEUR() {
+        double vndAmount = 250005000;
+        double expectedAmount = vndAmount * CurrencyExchangeRateConstants.VND_TO_EUR;
+        double actualAmount = CurrencyConverter.exchangeCurrency(Currency.VND, Currency.EUR, vndAmount);
+        assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
+    }
+        
+    
 }

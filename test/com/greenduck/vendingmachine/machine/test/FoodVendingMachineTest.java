@@ -14,6 +14,7 @@ import com.greenduck.vendingmachine.foods.Food;
 import com.greenduck.vendingmachine.foods.InstantNoodle;
 import com.greenduck.vendingmachine.foods.Sausage;
 import com.greenduck.vendingmachine.machine.FoodVendingMachine;
+import com.greenduck.vendingmachine.machine.GreenDuckFoodVendingMachine;
 import com.greenduck.vendingmachine.machine.MonkeyFoodVendingMachine;
 import com.greenduck.vendingmachine.money.Banknote;
 import com.greenduck.vendingmachine.money.Currency;
@@ -26,7 +27,8 @@ public class FoodVendingMachineTest {
 
     @Before
     public void setUp() {
-        foodVendingMachine = new MonkeyFoodVendingMachine(Currency.VND);
+        //foodVendingMachine = new MonkeyFoodVendingMachine(Currency.VND);
+        foodVendingMachine = new GreenDuckFoodVendingMachine(Currency.VND);
     }
 
     @Test
@@ -294,6 +296,7 @@ public class FoodVendingMachineTest {
         assertEquals(expectedRemainingBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
+    @Test
     public void testBuyFood_ShouldBuyCHFTagFood_WithCHFMachineCurrency() {
 
         // given
