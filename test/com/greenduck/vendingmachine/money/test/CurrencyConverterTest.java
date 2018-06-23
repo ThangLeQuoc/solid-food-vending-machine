@@ -113,8 +113,4 @@ public class CurrencyConverterTest {
         assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
     }
     
-    
-    
-    
-    
 }

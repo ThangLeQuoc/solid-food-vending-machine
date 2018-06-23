@@ -7,7 +7,7 @@ public class CurrencyConverter {
             return convertToUSDCurrency(from, amount);
         }
         if (Currency.USD.equals(from)) {
-            return convertFromUSDCurrency(to, amount);
+            return 1 / convertToUSDCurrency(to, amount);
         }
         return exchangeCurrency(Currency.USD, to, exchangeCurrency(from, Currency.USD, amount));
 
