@@ -124,7 +124,7 @@ public class CurrencyConverterTest {
     
     @Test
     public void testConvertEURtoVND() {
-        double eurAmount = 100;
+        double eurAmount = 50;
         double expectedAmount = eurAmount * CurrencyExchangeRateConstants.EUR_TO_VND;
         double actualAmount = CurrencyConverter.exchangeCurrency(Currency.EUR, Currency.VND, eurAmount);
         assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
@@ -132,11 +132,10 @@ public class CurrencyConverterTest {
     
     @Test
     public void testConvertVNDtoEUR() {
-        double vndAmount = 250005000;
+        double vndAmount = 250000000;
         double expectedAmount = vndAmount * CurrencyExchangeRateConstants.VND_TO_EUR;
         double actualAmount = CurrencyConverter.exchangeCurrency(Currency.VND, Currency.EUR, vndAmount);
         assertEquals(expectedAmount, actualAmount, FoodVendingTestConstant.EPSILON);
     }
-        
     
 }
