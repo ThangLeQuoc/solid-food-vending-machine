@@ -304,7 +304,7 @@ A vending machine know what to do when user attempt to buy food, or add banknote
 
 By separating currency conversion stuff to a new class only responsible for this. The food vending machine doesn't have to be broken up to add a new type of currency, or the conversion rate changes.
 
-I've been always love this quote from the book **HeadFirst Design Pattern**
+I've been always love this quote from the book **HeadFirst Design Patterns**
 
 > Identify the aspects of your application that vary and separate them from what stays the same.
 
