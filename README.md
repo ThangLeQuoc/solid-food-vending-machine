@@ -281,7 +281,7 @@ public class GreenDuckFoodVendingMachine extends FoodVendingMachine {
 }
 ```
 
-![GreenDuckFoodVendingMachine](https://i.imgur.com/pIPNzau.png)
+
 
 After built, don't forget to put the machine into the current test cases
 
@@ -293,6 +293,9 @@ public void setUp() {
     foodVendingMachine = new GreenDuckFoodVendingMachine(Currency.VND);
 }
 ```
+
+## The Big Picture with a new Green Duck Food Vending Machine
+![GreenDuckFoodVendingMachine](https://i.imgur.com/pIPNzau.png)
 
 ## What have we achieve so far using this design ?
 
