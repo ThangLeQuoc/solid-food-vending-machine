@@ -18,6 +18,7 @@ import com.greenduck.vendingmachine.machine.GreenDuckFoodVendingMachine;
 import com.greenduck.vendingmachine.machine.MonkeyFoodVendingMachine;
 import com.greenduck.vendingmachine.money.Banknote;
 import com.greenduck.vendingmachine.money.Currency;
+import com.greenduck.vendingmachine.money.CurrencyConverter;
 import com.greenduck.vendingmachine.money.CurrencyExchangeRateConstants;
 import com.greenduck.vendingmachine.money.PriceTag;
 
@@ -78,11 +79,12 @@ public class FoodVendingMachineTest {
         foodVendingMachine.addBalance(chfNote);
 
         // then
-        double expectedBalance = (vndNote.getAmount() + vndNote1.getAmount()) * CurrencyExchangeRateConstants.VND_TO_VND
-                + usdNote.getAmount() * CurrencyExchangeRateConstants.USD_TO_VND
-                + (eurNote.getAmount() + eurNote1.getAmount()) * CurrencyExchangeRateConstants.EUR_TO_VND
-                + chfNote.getAmount() * CurrencyExchangeRateConstants.CHF_TO_VND;
-
+        
+        double expectedBalance = 
+                CurrencyConverter.exchangeCurrency(Currency.VND, Currency.VND, (vndNote.getAmount() + vndNote1.getAmount()))
+                + CurrencyConverter.exchangeCurrency(Currency.USD, Currency.VND, usdNote.getAmount())
+                + CurrencyConverter.exchangeCurrency(Currency.EUR, Currency.VND, eurNote.getAmount() + eurNote1.getAmount())
+                + CurrencyConverter.exchangeCurrency(Currency.CHF, Currency.VND, chfNote.getAmount());
         assertEquals(expectedBalance, foodVendingMachine.getBalance(), FoodVendingTestConstant.EPSILON);
     }
 
