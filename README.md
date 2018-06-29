@@ -294,6 +294,25 @@ public void setUp() {
 }
 ```
 
+## What have we achieve so far using this design ?
+
+> Single Responsibility Principle
+
+A vending machine know what to do when user attempt to buy food, or add banknote. And a currency converter know how to convert different type of currencies. One man do one thing.
+
+> Open-Closed Principle
+
+By separating currency conversion stuff to a new class only responsible for this. The food vending machine doesn't have to be broken up to add a new type of currency, or the conversion rate changes.
+
+I've been always love this quote from the book **HeadFirst Design Pattern**
+
+> Identify the aspects of your application that vary and separate them from what stays the same.
+
+- Thing that vary: The currency conversion rate, the new type of currency
+- Thing that stay the same: The vending machine increase balance when a banknote is inserted, and decrease balance when a food is bought. This behavior will never changes if the currency conversion rate changes.
+
+
+
 
 
 
