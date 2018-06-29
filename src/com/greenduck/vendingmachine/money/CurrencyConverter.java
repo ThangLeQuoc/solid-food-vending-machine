@@ -1,7 +1,9 @@
 package com.greenduck.vendingmachine.money;
 
 public class CurrencyConverter {
-
+    
+    private CurrencyConverter() {}
+    
     public static double exchangeCurrency(Currency from, Currency to, double amount) {
         if (Currency.USD.equals(to)) {
             return convertToUSDCurrency(from, amount);
@@ -25,16 +27,4 @@ public class CurrencyConverter {
         }
         return amount;
     }
-
-    private static double convertFromUSDCurrency(Currency currency, double amount) {
-        if (Currency.VND.equals(currency)) {
-            return amount * CurrencyExchangeRateConstants.USD_TO_VND;
-        }
-        if (Currency.EUR.equals(currency)) {
-            return amount * CurrencyExchangeRateConstants.USD_TO_EUR;
-        } else {
-            return amount * CurrencyExchangeRateConstants.USD_TO_CHF;
-        }
-    }
-
 }
