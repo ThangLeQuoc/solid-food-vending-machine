@@ -314,6 +314,11 @@ I've been always love this quote from the book **HeadFirst Design Patterns**
 - Thing that vary: The currency conversion rate, the new type of currency
 - Thing that stay the same: The vending machine increase balance when a banknote is inserted, and decrease balance when a food is bought. This behavior will never changes if the currency conversion rate changes.
 
+#### Something To Remember... :love_letter:
+I got 4 submissions from my company fellow developers. They are Phuc, Tung, Nguyet and Binh. Couldn't tell how happy I was to see my challenge embraced by others. :smile_cat:  
+![The review I got](https://i.imgur.com/Y1tlQYM.jpg)
+
+
 
 
 
